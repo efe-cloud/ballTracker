@@ -1,0 +1,7 @@
+Hue Lower: 25
+Hue Upper: 102
+Sat Lower: 26
+Sat Upper: 82
+Val Lower: 106
+Val Upper: 213
+Trajectory: 1
