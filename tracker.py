@@ -1,7 +1,12 @@
 import cv2
 import numpy as np
 import os
+import serial
 import time
+
+ser = serial.Serial('COM3', 9600, timeout=1)
+time.sleep(2)
+
 
 def nothing(x):
     pass
@@ -97,8 +102,11 @@ try:
                             # dodge decision based on future position
                             if future_position[0] < frame.shape[1] // 2:
                                 print("right")
+                                ser.write(b'R')
+
                             else:
                                 print("left")
+                                ser.write(b'L')
 
         cv2.imshow('Frame', frame)
         cv2.imshow('Mask', mask)
