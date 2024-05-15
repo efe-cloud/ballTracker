@@ -4,9 +4,8 @@ import os
 import serial
 import time
 
-ser = serial.Serial('COM3', 9600, timeout=1)
-time.sleep(2)
-
+# ser = serial.Serial('COM3', 9600, timeout=1)
+# time.sleep(2)
 
 def nothing(x):
     pass
@@ -102,17 +101,19 @@ try:
                             # dodge decision based on future position
                             if future_position[0] < frame.shape[1] // 2:
                                 print("right")
-                                ser.write(b'R')
-
+                                # ser.write(b'R')
                             else:
                                 print("left")
-                                ser.write(b'L')
+                                # ser.write(b'L')
 
         cv2.imshow('Frame', frame)
         cv2.imshow('Mask', mask)
         cv2.imshow('Result', cv2.bitwise_and(frame, frame, mask=mask))
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord('r'):
+            trajectory = []  # Clear the trajectory when 'r' is pressed
+        elif key == ord('q'):
             break
 
 finally:
